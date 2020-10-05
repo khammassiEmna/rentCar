@@ -1,0 +1,171 @@
+<div *ngIf="authority === 'admin'">
+
+  <nav>
+    <div
+      class="sidebar-widget-header-right  border-red-600 border-2 rounded-t-full rounded-l-full px-1 py-1 shadow-2xl bg-gray-900 ">
+      <div class="flex w-full mb-20 flex-wrap m-2">
+
+        <div class="flex items-center flex-shrink-0 text-white mr-6">
+          <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
+          </svg>
+          <span class="font-semibold text-5xl tracking-tight">Royal agency</span>
+        </div>
+        <div class="block lg:hidden">
+          <button
+            class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
+            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <title>Marque</title>
+              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+            </svg>
+          </button>
+        </div>
+        <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+          <div class="text-2xl lg:flex-grow">
+            <a href="addBrand" class="block mt-4 lg:inline-block lg:mt-0 text-red-700 hover:text-white mr-4">
+              marque
+            </a>
+            <a href="addModel" class="block mt-4 lg:inline-block lg:mt-0 text-red-700 hover:text-white mr-4">
+              Modele
+            </a>
+            <a href="addCar" class="block mt-4 lg:inline-block lg:mt-0 text-red-700 hover:text-white mr-4">
+              Voiture
+            </a>
+            <a href="addClient" class="block mt-4 lg:inline-block lg:mt-0 text-red-700 hover:text-white mr-4">
+              Client
+            </a>
+            <a href="nextReservation" class="block mt-4 lg:inline-block lg:mt-0 text-red-700 hover:text-white">
+              Reservation
+            </a>
+
+          </div>
+          <div>
+            <!-- Dropdown -->
+            <div class="relative">
+              <button (click)="dropdownControl()"
+                class="block h-12 w-12 rounded-full overflow-hidden focus:outline-none">
+
+                <span>
+                  <svg class="fill-current h-10 w-10 mx-auto text-gray-300 hover:text-white" viewBox="0 0 24 24">
+                    <path d="M12 4a4 4 0 014 4 4 4 0 01-4 4 4 4 0 01-4-4 4 4 0
+                    014-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4
+                    8-4z">
+                    </path>
+                  </svg>
+
+                </span>
+              </button>
+              <!-- Dropdown Body -->
+              <div class="text-white  hover:text-white mr-4">{{userName}}</div>
+              <div *ngIf="dropdown">
+
+
+                <div class=" bg-black bg-opacity-25 absolute right-0 w-40 mt-2 py-2 border rounded shadow-xl">
+                  <button (click)="profil()" class="transition-colors duration-200 block px-4 py-2 text-normal text-white rounded
+                hover:bg-red-500 hover:text-gray-700">Profil</button>
+
+                  <button (click)=" logout()"
+                    class="transition-colors duration-200 block px-4 py-2 text-normal text-white rounded hover:bg-red-500 hover:text-gray-700">
+                    Logout
+                  </button>
+                </div>
+              </div>
+              <!-- // Dropdown Body -->
+            </div>
+            <!-- // Dropdown -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="bg-no-repeat bg-center mb-2 bg-cover  p-6 text-white rounded-b-lg"
+    style="background-image: url(https://st2.depositphotos.com/1370441/8050/i/450/depositphotos_80502214-stock-photo-couple-driving-convertable-at-sunset.jpg)">
+
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+
+<div *ngIf="authority=== 'user'">
+  <nav>
+    <div
+      class="sidebar-widget-header-right  border-red-600 border-2 rounded-t-full rounded-l-full px-1 py-1 shadow-2xl bg-gray-900 ">
+      <div class="flex w-full mb-20 flex items-center justify-between flex-wrap m-2">
+        <div class="p-2 bg-red-700 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex"
+          role="alert">
+          <a href="auth/login"
+            class="flex rounded-full bg-gray-900 uppercase px-2 py-1 text-xs font-bold mr-3">Login</a>
+          <span class="font-semibold mr-2 text-left flex-auto">Royal Agency</span>
+        </div>
+        <!-- Dropdown -->
+        <div class="relative ">
+          <button (click)="dropdownControl()" class="block h-12 w-12 rounded-full overflow-hidden focus:outline-none">
+
+            <span>
+              <svg class="fill-current h-10 w-10 mx-auto text-gray-300 hover:text-red-500" viewBox="0 0 24 24">
+                <path d="M12 4a4 4 0 014 4 4 4 0 01-4 4 4 4 0 01-4-4 4 4 0
+                014-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4
+                8-4z">
+                </path>
+              </svg>
+
+            </span>
+          </button>
+          <!-- Dropdown Body -->
+          <div class="text-teal-200 hover:text-white mr-4">{{userName}}</div>
+          <div *ngIf="dropdown">
+
+
+            <div class="absolute right-0 w-40 mt-2 py-2 bg-white border rounded shadow-xl">
+              <button (click)="profil()" class="transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded
+            hover:bg-red-500 hover:text-white">Profil</button>
+
+              <button (click)="userReserv()" class="transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded
+            hover:bg-red-500 hover:text-white">Reservation</button>
+              <button (click)=" logout()"
+                class="transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-red-500 hover:text-white">
+                Logout
+              </button>
+            </div>
+          </div>
+          <!-- // Dropdown Body -->
+        </div>
+        <!-- // Dropdown -->
+      </div>
+    </div>
+  </nav>
+  <div class="bg-no-repeat bg-center mb-2 bg-cover  p-6 text-white rounded-b-lg"
+    style="background: center / cover url(https://www.turtlewax.com/media/3131/summer-road-trip-essentials-and-checklist-turtle-wax-thumbnail.jpg)">
+
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+
+
+<div *ngIf="!authority">
+  <div
+    class="sidebar-widget-header-right  border-red-600 border-2 rounded-t-full rounded-l-full px-1 py-1 shadow-2xl bg-gray-900 ">
+    <div class="flex w-full mb-20 flex-wrap m-2">
+      <div class="p-2 bg-red-700 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex"
+        role="alert">
+        <a href="signup"
+          class="flex rounded-full bg-gray-900 uppercase px-2 py-1 text-xs font-bold mr-3">Inscription</a>
+        <span class="font-semibold mr-2 text-left flex-auto">Royal Agency</span>
+      </div>
+
+      <p class="lg:pl-6 lg:w-2/3 mx-auto leading-relaxed text-base text-xl text-red-700">
+
+        INscrivez vous pour pouvoir effectuer des réservations de location et exploiter votre page client
+
+      </p>
+    </div>
+  </div>
+  <div class="bg-no-repeat bg-center mb-2 bg-cover  p-6 text-white rounded-b-lg"
+    style="background: center / cover url(https://c4.wallpaperflare.com/wallpaper/683/186/563/macos-mojave-day-wallpaper-preview.jpg )">
+
+    <router-outlet></router-outlet>
+  </div>
+</div>

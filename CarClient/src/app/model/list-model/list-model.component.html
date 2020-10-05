@@ -1,0 +1,57 @@
+<app-model-nav-bar></app-model-nav-bar>
+<div class="w-full pt-2 p-4" class="w-full h-screen flex justify-center">
+    <div class="text-red-700 w-full h-screen pt-2 p-4 ">
+        <div class="p-4 flex justify-center">
+            <h1 class="text-3xl ">
+                Liste des modeles
+            </h1>
+        </div>
+        <div class="p-4 flex justify-center">
+
+            <div *ngIf="errorMsg" class="alert alert-danger">
+                Ce modele ne peut pas être supprimé car plusieurs voitures en appartient!
+            </div>
+        </div>
+        <div class="px-3 py-4 flex justify-center">
+
+            <table class="w-full text-md bg-black bg-opacity-50 shadow-md rounded mb-4">
+                <tr>
+
+                </tr>
+                <tbody>
+
+                    <tr class="border-b">
+                        <th class="text-left p-3 px-5 text-red-700">Nom</th>
+                        <th class="text-left p-3 px-5 text-red-700">Nom de la marque</th>
+
+
+
+                    </tr>
+                    <tr *ngFor=" let model of models | async"
+                        class="border-b border-b hover:bg-gray-900 bg-black bg-opacity-50">
+                        <td class="p-3 px-5"><label class="bg-bg-transparent text-gray-500">{{model.name}}</label>
+                        </td>
+
+
+                        <td class="p-3 px-5"><label class="bg-transparent text-gray-500">{{model.brand.name}}</label>
+                        </td>
+                        <td class="p-3 px-5 flex justify-end">
+                            <button type="button" (click)="modelDetails(model.id)"
+                                class="inline-flex p-8 w-30  bg-red-600 text-white rounded-full h-6 px-3 justify-center items-center">
+                                Modifier
+                            </button>
+
+                            <button type="button" (click)="deleteModel(model.id)"
+                                class="inline-flex p-8 w-30  bg-red-600 text-white rounded-full h-6 px-3 justify-center items-center">
+                                Supprimer</button>
+                        </td>
+
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

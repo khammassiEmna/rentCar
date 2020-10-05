@@ -1,0 +1,88 @@
+<app-resrvation-nav-bar></app-resrvation-nav-bar>
+
+
+
+
+<div class="w-full pt-2 p-4" class="w-full h-screen flex justify-center">
+
+
+    <div class="text-gray-900 w-full pt-2 p-4 ">
+        <div class="p-4 flex justify-center">
+            <div *ngIf="errorMsg" class="alert alert-danger">
+                La voiture est déja reservé pendant cette période!
+            </div>
+        </div>
+        <div class="px-3 py-4 flex justify-center">
+
+            <table class="w-full   text-md bg-black bg-opacity-50 shadow-md rounded mb-4">
+                <tbody>
+                    <tr class="border-b bg-opacity-75">
+                        <th class="text-left p-3 px-5 text-red-500">Nom de locataire</th>
+                        <th class="text-left p-3 px-5 text-red-500">Matricule de voiture</th>
+                        <th class="text-left p-3 px-5 text-red-500">Photo du voiture</th>
+                        <th class="text-left p-3 px-5 text-red-500">Date de début</th>
+                        <th class="text-left p-3 px-5 text-red-500">Date de fin</th>
+                        <th class="text-left p-3 px-5 text-red-500">Tarif</th>
+
+
+                    </tr>
+                    <tr>
+
+                    </tr>
+                    <tr *ngFor="let reservation  of reservations  | async"
+                        class="border-b hover:bg-gray-900 bg-black bg-opacity-50">
+                        <td class="p-3 px-5
+                        bg-transparent text-gray-500">
+                            <label class="bg-transparent">{{reservation.user.userName}}</label>
+                        </td>
+
+                        <td class="p-3 px-5
+                        bg-transparent text-gray-500
+
+                        "><label class="bg-transparent">{{reservation.car.matricule}}</label>
+                        </td>
+                        <td class="p-3 px-5
+                        bg-transparent text-gray-500
+                        ">
+                            <img src="data:image/JPEG;base64,{{reservation.car.picByte}}"
+                                class="h-56 max-w-sm rounded w-full object-cover object-center mb-0 card-img-top">
+                        </td>
+
+                        <td class="p-3 px-5
+                        bg-transparent text-gray-500">
+                            <label class="bg-transparent">{{reservation.dateDeb}}</label>
+                        </td>
+
+
+                        <td class="p-3 px-5
+                        bg-transparent text-gray-500">
+                            <label class="bg-transparent">{{reservation.dateFin}}</label>
+                        </td>
+
+                        <td class="p-3 px-5
+                        bg-transparent text-gray-500">
+                            <label class="bg-transparent">{{reservation.price}}</label>
+                        </td>
+                        <td class="p-3 px-5 justify-around ">
+                            <button type="button" (click)="confirmReservation(reservation.id)"
+                                class="
+                                p-8 w-30 m-20
+                                inline-flex p-8 w-30  bg-red-600 text-white rounded-full h-6 px-3 justify-center items-center">
+                                confirmer
+                            </button>
+
+                            <button type="button" (click)="deleteReservation(reservation.id)" class="
+                                p-8 w-30 m-10
+                                inline-flex   bg-red-600 text-white rounded-full h-6 px-3 justify-center items-center">
+                                Supprimer</button>
+                        </td>
+
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

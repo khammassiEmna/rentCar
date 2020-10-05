@@ -1,0 +1,71 @@
+<div *ngIf="isSignedUp; else signupForm">
+    Your registration is successful. Please login!
+</div>
+
+
+<ng-template #signupForm>
+    <div class=" w-full h-screen flex ">
+        <img src="https://wi.wallpapertip.com/wsimgs/89-894872_luxury-red-car-background.jpg" alt="background"
+            class="object-cover object-center h-screen w-7/12">
+        <div class="bg-white flex flex-col justify-center items-center w-5/12 shadow-lg ">
+            <h1 class="text-xl font-bold text-red-500 font-medium title-font mb-5">S'inscrire</h1>
+            <div class="w-1/2 text-center">
+                <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                    <input placeholder="fullName" autocomplete="off" type="text" name="fullName"
+                        [(ngModel)]="form.fullName" #fullName="ngModel"
+                        class="shadow-md border w-full px-10 py-5 text-red-500 focus:outline-none focus:border-red-500 mb-6 rounded"
+                        required>
+
+                    <input placeholder="numero de permis" autocomplete="off" type="text" name="permis"
+                        [(ngModel)]="form.permis" #mail="ngModel"
+                        class="shadow-md border w-full px-10 py-5 text-red-500 focus:outline-none focus:border-red-500 mb-6 rounded"
+                        required>
+
+                    <input placeholder="mail" autocomplete="off" type="text" name="email" [(ngModel)]="form.email"
+                        #email="ngModel"
+                        class="shadow-md border w-full px-10 py-5 text-red-500 focus:outline-none focus:border-red-500 mb-6 rounded"
+                        required>
+                    <div *ngIf="f.submitted && email.invalid" class="alert alert-danger">
+                        <div *ngIf="email.invalid">*Veuillez saisir une adresse mail valide</div>
+                        <div *ngIf="email.errors.required">*le champs mail est obligatoire</div>
+
+                    </div>
+                    <input placeholder="username" autocomplete="off" type="text" name="username"
+                        [(ngModel)]="form.username" #username="ngModel"
+                        class="shadow-md border w-full px-10 py-5 text-red-500 focus:outline-none focus:border-red-500 mb-6 rounded"
+                        required>
+                    <div *ngIf="f.submitted && username.invalid" class="alert alert-danger">
+                        <div *ngIf="username.errors.required">*Le champs nom est obligatoire</div>
+                    </div>
+                    <input placeholder="password" autocompte="off" type="password" class="form-control" name="password"
+                        [(ngModel)]="form.password" #password="ngModel"
+                        class="shadow-md border w-full  px-10 py-5 text-red-500 focus:outline-none focus:border-red-500 mb-6 rounded"
+                        required minlength="6">
+
+
+                    <div *ngIf="f.submitted && password.invalid" class="alert alert-danger">
+                        <div *ngIf="password.errors.required">Le champs mot de passe est obligatoire</div>
+                        <div *ngIf="password.errors.minlength">Le mot de passe doit être construit d'au moins 6
+                            caractéres</div>
+                    </div>
+
+                    <button
+                        class="text-white bg-red-700 border-0 py-5 px-20 focus:outline-none hover:bg-red-600 rounded text-3xl">Sign
+                        In</button>
+
+                    <br>
+                    <a href="auth/login"
+                        class="block py-5 px-10 lg:inline-block lg:mt-0 text-red-500 text-align hover:text-red-700 mr-4">
+
+                        Login
+                    </a>
+                    <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-danger">
+                        {{errorMessage}}
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</ng-template>

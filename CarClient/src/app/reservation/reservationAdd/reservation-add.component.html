@@ -1,0 +1,95 @@
+<app-car-nav-bar></app-car-nav-bar>
+
+<div class="w-full h-screen flex justify-center">
+    <div class="w-full pt-2 p-4">
+
+        <div class="mx-auto md:p-20 ">
+
+            <div *ngIf="errorMsg" class="alert alert-danger">
+                La voiture n est pas disponible dans cette date
+            </div>
+            <div class="bg-black bg-opacity-50 shadow-md w-full rounded px-8 pt-6 pb-8 mb-4">
+
+                <div class="mb-8">
+                    <label for="username" class="block text-red-700 text-lg font-bold  mb-2 ">
+                        <span class="text-red-500">&nbsp;*</span>
+                        Nom du locataire
+                    </label>
+                    <div class="mt-1 relative rounded-md shadow-sm">
+
+                        <select [(ngModel)]="username" name="userName"
+                            class="
+                                bg-black bg-opacity-0
+                                block appearance-none text-white w-full focus:bg-gray-900 border border-white focus:border-red-800  shadow-inner px-4 py-2 pr-8 rounded">
+                            <option [ngValue]="user.userName" *ngFor="let user of users | async"
+                                [ngModelOptions]="{standalone: true}">
+                                {{user.fullName}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <label for="username" class="block text-red-700 text-lg font-bold  mb-2 ">
+                        <span class="text-red-500">&nbsp;*</span>
+                        Date de Debut </label>
+                    <div class="mt-1 relative rounded-md shadow-sm">
+
+                        <input type="date"
+                            class="
+                            bg-black bg-opacity-0
+                            block pr-10 shadow appearance-none border-2 border-white rounded w-full py-2 px-4 text-white mb-3 leading-tight focus:outline-none focus:bg-gray-900 focus:border-red-800 transition duration-500 ease-in-out"
+                            [(ngModel)]="dateDeb" (blur)="compareWithCurrent()">
+                    </div>
+                </div>
+
+                <div *ngIf="errorCurrent.isError" class="alert alert-danger">
+                    {{ errorCurrent.errorMessage }}
+                </div>
+
+
+                <div class="mb-8">
+                    <label for="username" class="block text-red-700 text-lg font-bold  mb-2 ">
+                        <span class="text-red-500">&nbsp;*</span>
+                        Date de Fin </label>
+                    <div class="mt-1 relative rounded-md shadow-sm">
+
+                        <input type="date"
+                            class="
+                            bg-black bg-opacity-0
+                            block pr-10 shadow appearance-none border-2 border-white rounded w-full py-2 px-4 text-white mb-3 leading-tight focus:outline-none focus:bg-gray-900 focus:border-red-800 transition duration-500 ease-in-out"
+                            [(ngModel)]="dateFin" (blur)="compareTwoDates()">
+                    </div>
+                </div>
+
+                <div *ngIf="error.isError" class="alert alert-danger">
+                    {{ error.errorMessage }}
+                </div>
+
+                <label class="text-red-700 text-xl text-bold" for="count">Total:</label>
+                <div class="flex items-center mt-1">
+
+                    <input type="text" readonly [(ngModel)]="price"
+                        class="block
+                        bg-black bg-opacity-0
+                    focus:bg-gray-900 focus:border-red-800 border-white text-white
+                    pr-10 shadow appearance-none border-2 rounded w-full py-2 px-4  mb-3 leading-tight focus:outline-none transition duration-500 ease-in-out">
+
+                </div>
+
+                <div class="mb-4 text-center">
+
+                    <button (click)="reserver()"
+                        class="inline-flex p-8 w-48  bg-red-600 text-white rounded-full h-6 px-3 justify-center items-center">
+
+                        Ajouter
+                    </button>
+                </div>
+                <hr>
+
+
+
+            </div>
+        </div>
+    </div>
+
+</div>

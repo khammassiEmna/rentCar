@@ -1,0 +1,112 @@
+<app-car-nav-bar></app-car-nav-bar>
+<div *ngIf="modelNotFound" class="alert alert-danger">
+    Vous ne pouvez ajouter des voitures qu'aprés avoir inserer des modeles!
+</div>
+<div *ngIf="!modelNotFound">
+
+    <div class="w-full h-screen flex justify-center">
+        <div class="w-full pt-2 p-4">
+
+            <div class="mx-auto md:p-20 ">
+
+                <div class="bg-black bg-opacity-75 
+                shadow-md w-full rounded px-8 pt-6 pb-8 mb-4">
+                    <form form (ngSubmit)="onUpload()">
+
+                        <div class="mb-8">
+                            <label for="username" class="block text-red-700 text-lg font-bold mb-2 ">
+                                <span class="text-red-500">&nbsp;*</span>
+                                Matricule
+                            </label>
+                            <div class="mt-1 relative rounded-md shadow-sm">
+
+                                <input id="matricule" required [(ngModel)]="matricule" name="matricule"
+                                    autocomplete="off"
+                                    class="block bg-black bg-opacity-0 focus:bg-gray-900 focus:border-red-800 border-white text-white
+                                pr-10 shadow appearance-none border-2  rounded w-full py-2 px-4 text-white mb-3 leading-tight focus:outline-none  transition duration-500 ease-in-out"
+                                    required />
+                            </div>
+                        </div>
+
+
+
+
+
+
+                        <div class="mb-8">
+                            <label for="username" class="block text-red-700 text-lg font-bold mb-2 ">
+                                <span class="text-red-500">&nbsp;*</span>
+                                photo
+                            </label>
+                            <div class="mt-1 relative rounded-md shadow-sm">
+
+                                <input type="file" (change)="onFileChanged($event)"
+                                    class="block bg-black bg-opacity-0 focus:bg-gray-900 focus:border-red-800 border-white text-white
+                                    pr-10 shadow appearance-none border-2  rounded w-full py-2 px-4 text-white mb-3 leading-tight focus:outline-none  transition duration-500 ease-in-out" />
+                            </div>
+                        </div>
+                        <div class="mb-8">
+                            <label for="username" class="block text-red-700 text-lg font-bold mb-2 ">
+                                <span class="text-red-500">&nbsp;*</span>
+                                Année de fabrication
+                            </label>
+                            <div class="mt-1 relative rounded-md shadow-sm">
+
+                                <input id="name" required [(ngModel)]="creationYear" name="creationYear"
+                                    autocomplete="off"
+                                    class="block 
+                                    bg-black bg-opacity-0 focus:bg-gray-900 focus:border-red-800 border-white text-white
+                                    pr-10 shadow appearance-none border-2 rounded w-full py-2 px-4  mb-3 leading-tight focus:outline-none transition duration-500 ease-in-out" />
+                            </div>
+                        </div>
+                        <div class="mb-8">
+                            <label for="username" class="block text-red-700 text-lg font-bold mb-2 ">
+                                <span class="text-red-500">&nbsp;*</span>
+                                Prix de location
+                            </label>
+                            <div class="mt-1 relative rounded-md shadow-sm">
+
+                                <input id="price" required [(ngModel)]="price" name="price" autocomplete="off"
+                                    class="block
+                                    bg-black bg-opacity-0 focus:bg-gray-900 focus:border-red-800 border-white text-white
+                                    pr-10 shadow appearance-none border-2 rounded w-full py-2 px-4  mb-3 leading-tight focus:outline-none transition duration-500 ease-in-out" />
+                            </div>
+                        </div>
+                        <div class="mb-8">
+                            <label for="username" class="block text-red-700 text-lg font-bold mb-2 ">
+                                <span class="text-red-500">&nbsp;*</span>
+                                Nom du Marque
+                            </label>
+
+                            <select [(ngModel)]="modelId" name="modelId"
+                                class="bg-black bg-opacity-0
+                                block appearance-none text-white w-full focus:bg-gray-900 border border-white focus:border-red-800  shadow-inner px-4 py-2 pr-8 rounded">
+                                <option [ngValue]="model.id" *ngFor="let model of models"
+                                    [ngModelOptions]="{standalone: true}">
+                                    {{model.name}}</option>
+                            </select>
+                        </div>
+
+
+
+
+
+                        <div class="mb-4 text-center">
+
+                            <button
+                                class="inline-flex p-8 w-48  bg-red-600 text-white rounded-full h-6 px-3 justify-center items-center">
+
+                                Ajouter
+                            </button>
+                        </div>
+                        <hr>
+
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

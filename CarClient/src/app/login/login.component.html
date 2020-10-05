@@ -1,0 +1,43 @@
+<div *ngIf="!isLoggedIn">
+  <div class="w-full h-screen flex">
+    <img src="https://wi.wallpapertip.com/wsimgs/89-894872_luxury-red-car-background.jpg" alt="background"
+      class="object-cover object-center h-screen w-7/12">
+    <div class="bg-white flex flex-col justify-center items-center w-5/12 shadow-lg ">
+      <h1 class="text-xl font-bold text-red-500 font-medium title-font mb-5">LOGIN</h1>
+      <div class="w-1/2 text-center">
+        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+          <input placeholder="username" autocomplete="off" type="text" name="username" [(ngModel)]="form.username"
+            #username="ngModel"
+            class="shadow-md border w-full px-10 py-5 text-red-500 focus:outline-none focus:border-red-500 mb-6 rounded"
+            required>
+          <div *ngIf="f.submitted && username.invalid">
+            <div *ngIf="username.errors.required">Username is required</div>
+          </div>
+          <input placeholder="password" autocompte="off" type="password" class="form-control" name="password"
+            [(ngModel)]="form.password" #password="ngModel"
+            class="shadow-md border w-full  px-10 py-5 text-red-500 focus:outline-none focus:border-red-500 mb-6 rounded"
+            required minlength="6">
+
+
+          <div *ngIf="f.submitted && password.invalid" class="alert alert-danger">
+            <div *ngIf="password.errors.required">Le champs mot de passe est obligatoire</div>
+            <div *ngIf="password.errors.minlength">Le mot de passe doit être composé d'au moins six caractéres</div>
+          </div>
+
+          <button
+            class="text-white bg-red-700 border-0 py-5 px-20 focus:outline-none hover:bg-red-600 rounded text-3xl">Sign
+            In</button>
+          <br>
+          <a href="signup"
+            class="block py-20 px-20 lg:inline-block lg:mt-0 text-red-500 text-align hover:text-red-700 mr-4">
+            S'inscrire
+          </a>
+          <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
+            Veuillez vérifier vos coordonnées
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

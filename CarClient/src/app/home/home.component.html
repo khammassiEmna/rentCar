@@ -1,0 +1,45 @@
+<div *ngIf="info.token; else loggedOut">
+
+    <div
+        class="my-1 pt-1 pb-2 px-10  rounded-l-lg transition duration-500 ease-in-out overflow-y-auto w-full rounded-lg lg:rounded-l-lg lg:rounded-r-none bg-black bg-opacity-50  ">
+        <section class="text-gray-700 body-font">
+            <div class="container px-2 py-4 mx-auto flex flex-wrap">
+                <div class="flex flex-wrap md:-m-2 -m-1">
+                    <div class="flex flex-wrap w-1/2">
+                        <div class="md:p-2 p-1 w-1/2">
+                            <img alt="gallery" class="w-full object-cover h-full object-center block"
+                                src="https://images8.alphacoders.com/109/thumb-350-1091955.jpg">
+                        </div>
+                        <div class="md:p-2 p-1 w-1/2">
+                            <img alt="gallery" class="w-full object-cover h-full object-center block"
+                                src="https://images.alphacoders.com/108/thumb-350-1089804.jpg">
+                        </div>
+                        <div class="md:p-2 p-1 w-full">
+                            <img alt="gallery" class="w-full h-full object-cover object-center block"
+                                src="https://images3.alphacoders.com/109/thumb-350-1091187.jpg">
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap w-1/2">
+                        <div class="md:p-2 p-1 w-full">
+                            <img alt="gallery" class="w-full h-full object-cover object-center block"
+                                src="https://images8.alphacoders.com/714/thumbbig-714313.jpg">
+                        </div>
+                        <div class="md:p-2 p-1 w-1/2">
+                            <img alt="gallery" class="w-full object-cover h-full object-center block"
+                                src="https://images6.alphacoders.com/997/thumbbig-997537.jpg">
+                        </div>
+                        <div class="md:p-2 p-1 w-1/2">
+                            <img alt="gallery" class="w-full object-cover h-full object-center block"
+                                src="https://images6.alphacoders.com/714/thumbbig-714316.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</div>
+
+<ng-template #loggedOut>
+    <app-login></app-login>
+</ng-template>

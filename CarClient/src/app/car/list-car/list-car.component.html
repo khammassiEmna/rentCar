@@ -1,0 +1,324 @@
+<div class="flex space-x-4 flex-wrap -m-4 items-center w-full rounded-lg lg:rounded-l-lg lg:rounded-r-none ml-2">
+
+
+    <div
+        class=" h-full w-2/12 bg-black bg-opacity-50 sidebar-widget bg-black bg-cover rounded-t-lg rounded-l-lg p-6 text-white border-red-600 border-2 py-2">
+
+        <div class="container">
+            <div class=" flex items-center ">
+                <div class="w-full max-w-lg mx-auto mt-2 md:ml-8 md:mt-0 md:w-1/1">
+                    <div
+                        class="sidebar-widget-header-right bg-red-600 border-red-200 border-2 rounded-t-full rounded-l-full py-2 px-4 ">
+                        <h5>Interval de prix</h5>
+                    </div>
+                    <br>
+                    <div
+                        class="no-underline text-white py-2 px-2 font-medium mr-3 bg-gray-900 hover:bg-gray-700 border-red-700 border-2 bg-gray-900 rounded-t-full rounded-l-full ">
+                        <input type="radio" name="price" value="0" (change)="priceTri($event.target.value)">Tous
+                        prix
+                    </div>
+                    <br>
+                    <div
+                        class="no-underline text-white py-2 px-2 font-medium mr-3 bg-gray-900 hover:bg-gray-700 border-red-700 border-2 rounded-t-full rounded-l-full ">
+                        <input type="radio" name="price" value="50" (change)="priceTri($event.target.value)">Moins de 50
+                        Dt</div>
+                    <br>
+                    <div
+                        class="no-underline text-white py-2 px-2 font-medium mr-3 bg-gray-900 hover:bg-gray-700 border-red-700 border-2 bg-gray-900 rounded-t-full rounded-l-full ">
+                        <input type="radio" name="price" value="100" (change)="priceTri($event.target.value)">Moins de
+                        100
+                        Dt</div>
+                    <br>
+                    <div
+                        class="no-underline text-white py-2 px-2 font-medium mr-3 bg-gray-900 hover:bg-gray-700 border-red-700 border-2 bg-gray-900 rounded-t-full rounded-l-full ">
+                        <input type="radio" name="price" value="200" (change)="priceTri($event.target.value)">Moins de
+                        200
+                        Dt</div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <main class="my-1 pt-2 pb-2 px-10 flex-1 rounded-t-lg rounded-l-lg 
+ transition duration-500 ease-in-out overflow-y-auto">
+        <div class="p-4 flex justify-center bg-black bg-opacity-50">
+            <input [(ngModel)]="modelName" class="w-full h-16 px-3
+    bg-black bg-opacity-50
+    rounded mb-8 focus:outline-none focus:shadow-outline text-xl text-white px-8 shadow-lg" type="search"
+                placeholder="Chercher par marque ou modéle...">
+            <button type="button" (click)="getCarByModel()"
+                class="inline-flex p-8 w-30  bg-red-600 text-white rounded-full h-6 px-3 justify-center items-center">
+                chercher</button>
+        </div>
+
+        <br>
+        <main
+            class="my-1 pt-1 pb-2 px-10 flex-1  bg-black bg-opacity-50  rounded-l-lg transition duration-500 ease-in-out overflow-y-auto w-full rounded-lg lg:rounded-l-lg lg:rounded-r-none  ">
+
+            <div class="article-bar-title px-3 lg:px-0">
+                <div class="flex items-center justify-between relative mb-4">
+                    <div
+                        class="flex-shrink-0 tag-red bg-red-600 text-white border-2 border-red-600 px-6 py-1 rounded-t-full rounded-l-full">
+                        Nos voitures
+                    </div>
+                    <div class="border-b-2 border-red-600 absolute bottom-0" style="left: 25px; right: 17px;"></div>
+
+                </div>
+            </div>
+
+            <div class="flex">
+
+
+                <div
+                    class=" bg-black bg-opacity-25  mr-6 w-4/1 mt-8 py-2 px-0 flex-shrink-0 flex flex-col rounded-lg text-white">
+
+
+                    <div
+                        class="flex space-x-4 flex-wrap -m-4 items-center w-full rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl  mx-6 lg:mx-0 px-0 py-0 justify-bet">
+                        <div *ngIf="!cars" class="m-auto">
+                            <h1 class="text-center display-3 mt-5">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </h1>
+                        </div>
+
+                        <div *ngFor="let car of cars | async">
+                            <div class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden my-8 ">
+                                <div class="flex px-2 py-2 justify-between">
+                                    <h1 class="text-gray-900 font-bold text-3xl uppercase">{{ car.model.name }}</h1>
+                                    <div
+                                        class="ml-auto text-white  sidebar-widget-header-right bg-gray-900 rounded-full h-10 w-1O flex items-center  px-3 py-1 font-bold border-red-600 border-4">
+                                        {{car.price}} Dt
+                                    </div>
+                                </div>
+                                <img src="data:image/JPEG;base64,{{car.picByte}}" class="h-90 w-auto">
+                                <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
+                                    <h1 class="text-white font-bold text-xl">Année: {{ car.creationYear}}</h1>
+
+                                    <div *ngIf="authority === 'user'">
+                                        <button (click)="getById(car.id)"
+                                            class="px-3 py-1 bg-gray-500 text-sm text-gray-900 font-semibold rounded">reserver</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+        <br>
+
+        <main
+            class="my-1 pt-1 pb-2 px-10 flex-1  rounded-l-lg transition duration-500 ease-in-out overflow-y-auto w-full rounded-lg lg:rounded-l-lg lg:rounded-r-none bg-black bg-opacity-50  ">
+
+            <div class="article-bar-title px-3 lg:px-0">
+                <div class="flex items-center justify-between relative mb-4">
+                    <div
+                        class="flex-shrink-0 tag-red bg-red-600 text-white border-2 border-red-600 px-6 py-1 rounded-t-full rounded-l-full">
+                        Nouvel arrivage </div>
+                    <div class="border-b-2 border-red-600 absolute bottom-0" style="left: 25px; right: 17px;"></div>
+
+                </div>
+            </div>
+            <div class="flex">
+
+
+                <div class="mr-6 w-4/1 mt-8 py-2 px-0 flex-shrink-0 flex flex-col rounded-lg text-white">
+
+
+                    <div
+                        class="flex space-x-4 flex-wrap -m-4 items-center w-full rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-black bg-opacity-25  mx-6 lg:mx-0 px-0 py-0 justify-bet">
+                        <div *ngIf="!recentCars" class="m-auto">
+                            <h1 class="text-center display-3 mt-5">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </h1>
+                        </div>
+
+                        <div *ngFor="let car of recentCars | async">
+                            <div class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden my-8 ">
+                                <div class="flex px-2 py-2 justify-between">
+                                    <h1 class="text-gray-900 font-bold text-3xl uppercase">{{ car.model.name }}</h1>
+                                    <div
+                                        class="ml-auto text-white  sidebar-widget-header-right bg-gray-900 rounded-full h-10 w-1O flex items-center  px-3 py-1 font-bold border-red-600 border-4">
+                                        {{car.price}} Dt
+                                    </div>
+                                </div>
+                                <img src="data:image/JPEG;base64,{{car.picByte}}" class="h-100 w-auto">
+                                <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
+                                    <div *ngIf="authority === 'user'">
+                                        <button (click)="getById(car.id)"
+                                            class="px-3 py-1 bg-gray-200 text-sm text-gray-900 font-semibold rounded">reserver</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </main>
+    <div *ngIf="car">
+
+        <div class="lg:w-sidebar  px-2 lg:px-0 mt-4 md:mt-0 lg:mt-0 mb-4  bg-black bg-opacity-50">
+
+            <div class="container ">
+                <div class="md:flex md:items-center">
+
+                    <div class="w-full max-w-lg mx-auto mt-5 md:ml-8 md:mt-0 md:w-1/1">
+
+
+                        <img class="h-90 rounded w-full object-cover object-center mb-0 card-img-top"
+                            src="data:image/JPEG;base64,{{car.picByte}}">
+                        <h3 class="text-red-700 uppercase text-3xl bg-black text-center bg-opacity-75">
+                            {{car.model.name}}</h3>
+                        <br>
+                        <span class="text-gray-500 mt-3">${{car.price}}</span>
+
+                        <div class="mt-3">
+                            <label class="text-red-700 text-xl text-bold" for="count">date de debut</label>
+                            <div class="flex items-center mt-1">
+
+                                <input type="date" [(ngModel)]="dateDeb" (blur)="compareWithCurrent()"
+                                    class="block
+                                bg-black bg-opacity-75 focus:bg-gray-900 focus:border-red-800 border-white text-white
+                                pr-10 shadow appearance-none border-2 rounded w-full py-2 px-4  mb-3 leading-tight focus:outline-none transition duration-500 ease-in-out" />
+                            </div>
+                        </div>
+                        <div *ngIf="errorCurrent.isError" class="alert alert-danger">
+                            {{ errorCurrent.errorMessage }}
+                        </div>
+                        <div class="mt-3">
+                            <label class="text-red-700 text-xl text-bold" for="count">date de fin</label>
+                            <div class="flex items-center mt-1">
+
+                                <input type="date" [(ngModel)]="dateFin" (blur)="compareTwoDates()"
+                                    class="block
+                                bg-black bg-opacity-75 focus:bg-gray-900 focus:border-red-800 border-white text-white
+                                pr-10 shadow appearance-none border-2 rounded w-full py-2 px-4  mb-3 leading-tight focus:outline-none transition duration-500 ease-in-out" />
+                            </div>
+
+                            <label class="text-red-700 text-xl text-bold" for="count">Total:</label>
+                            <div class="flex items-center mt-1">
+
+                                <input type="text" readonly [(ngModel)]="price"
+                                    class="block
+                                bg-black bg-opacity-75 focus:bg-gray-900 focus:border-red-800 border-white text-white
+                                pr-10 shadow appearance-none border-2 rounded w-full py-2 px-4  mb-3 leading-tight focus:outline-none transition duration-500 ease-in-out">
+
+                            </div>
+                            <div *ngIf="error.isError" class="alert alert-danger">
+                                {{ error.errorMessage }}
+                            </div>
+                        </div>
+                        <br>
+
+                        <div *ngIf="errorMsg" class="alert alert-danger">
+                            La voiture n'est pas disponible dans cette date
+                        </div>
+                        <div class="flex items-center mt-6">
+                            <button (click)="reserver()" [disabled]="!btnReserver"
+                                class="inline-flex p-8 w-48  bg-red-600 text-white rounded-full h-6 px-3 justify-center items-center">
+                                Reserver</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div
+    class="my-1 pt-1 pb-2 px-10  rounded-l-lg transition duration-500 ease-in-out overflow-y-auto w-full rounded-lg lg:rounded-l-lg lg:rounded-r-none bg-black bg-opacity-50  ">
+    <section class="text-gray-700 body-font">
+        <div class="container px-2 py-4 mx-auto flex flex-wrap">
+            <div class="flex flex-wrap md:-m-2 -m-1">
+                <div class="flex flex-wrap w-1/2">
+                    <div class="md:p-2 p-1 w-1/2">
+                        <img alt="gallery" class="w-full object-cover h-full object-center block"
+                            src="https://images8.alphacoders.com/109/thumb-350-1091955.jpg">
+                    </div>
+                    <div class="md:p-2 p-1 w-1/2">
+                        <img alt="gallery" class="w-full object-cover h-full object-center block"
+                            src="https://images.alphacoders.com/108/thumb-350-1089804.jpg">
+                    </div>
+                    <div class="md:p-2 p-1 w-full">
+                        <img alt="gallery" class="w-full h-full object-cover object-center block"
+                            src="https://images3.alphacoders.com/109/thumb-350-1091187.jpg">
+                    </div>
+                </div>
+                <div class="flex flex-wrap w-1/2">
+                    <div class="md:p-2 p-1 w-full">
+                        <img alt="gallery" class="w-full h-full object-cover object-center block"
+                            src="https://images8.alphacoders.com/714/thumbbig-714313.jpg">
+                    </div>
+                    <div class="md:p-2 p-1 w-1/2">
+                        <img alt="gallery" class="w-full object-cover h-full object-center block"
+                            src="https://images6.alphacoders.com/997/thumbbig-997537.jpg">
+                    </div>
+                    <div class="md:p-2 p-1 w-1/2">
+                        <img alt="gallery" class="w-full object-cover h-full object-center block"
+                            src="https://images6.alphacoders.com/714/thumbbig-714316.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+<div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-red-500 opacity-25"></div>
+<div
+    class="my-1 pt-1 pb-2 px-10  rounded-l-lg transition duration-500 ease-in-out overflow-y-auto w-full rounded-lg lg:rounded-l-lg lg:rounded-r-none bg-black bg-opacity-50  ">
+
+    <div
+        class="sidebar-widget-header-right  border-red-600 border-2 rounded-t-full rounded-l-full px-1 py-1 shadow-2xl bg-gray-900 ">
+        <div class="container px-0 py-0 mx-auto flex items-center md:flex-row flex-col">
+
+            <div class="flex md:ml-auto md:mr-0 mx-auto items-center flex-shrink-0">
+                <button
+                    class="bg-red-700 inline-flex py-3 px-5 rounded-lg items-center hover:bg-red-600 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 512 512">
+                        <path
+                            d="M99.617 8.057a50.191 50.191 0 00-38.815-6.713l230.932 230.933 74.846-74.846L99.617 8.057zM32.139 20.116c-6.441 8.563-10.148 19.077-10.148 30.199v411.358c0 11.123 3.708 21.636 10.148 30.199l235.877-235.877L32.139 20.116zM464.261 212.087l-67.266-37.637-81.544 81.544 81.548 81.548 67.273-37.64c16.117-9.03 25.738-25.442 25.738-43.908s-9.621-34.877-25.749-43.907zM291.733 279.711L60.815 510.629c3.786.891 7.639 1.371 11.492 1.371a50.275 50.275 0 0027.31-8.07l266.965-149.372-74.849-74.847z">
+                        </path>
+                    </svg>
+                    <span class="ml-4 flex items-start flex-col leading-none">
+
+                        <span class="title-font text-white font-medium">Google Play</span>
+                    </span>
+                </button>
+                <button
+                    class="bg-red-700 inline-flex py-3 px-5 rounded-lg items-center ml-4 hover:bg-red-600 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 305 305">
+                        <path
+                            d="M40.74 112.12c-25.79 44.74-9.4 112.65 19.12 153.82C74.09 286.52 88.5 305 108.24 305c.37 0 .74 0 1.13-.02 9.27-.37 15.97-3.23 22.45-5.99 7.27-3.1 14.8-6.3 26.6-6.3 11.22 0 18.39 3.1 25.31 6.1 6.83 2.95 13.87 6 24.26 5.81 22.23-.41 35.88-20.35 47.92-37.94a168.18 168.18 0 0021-43l.09-.28a2.5 2.5 0 00-1.33-3.06l-.18-.08c-3.92-1.6-38.26-16.84-38.62-58.36-.34-33.74 25.76-51.6 31-54.84l.24-.15a2.5 2.5 0 00.7-3.51c-18-26.37-45.62-30.34-56.73-30.82a50.04 50.04 0 00-4.95-.24c-13.06 0-25.56 4.93-35.61 8.9-6.94 2.73-12.93 5.09-17.06 5.09-4.64 0-10.67-2.4-17.65-5.16-9.33-3.7-19.9-7.9-31.1-7.9l-.79.01c-26.03.38-50.62 15.27-64.18 38.86z">
+                        </path>
+                        <path
+                            d="M212.1 0c-15.76.64-34.67 10.35-45.97 23.58-9.6 11.13-19 29.68-16.52 48.38a2.5 2.5 0 002.29 2.17c1.06.08 2.15.12 3.23.12 15.41 0 32.04-8.52 43.4-22.25 11.94-14.5 17.99-33.1 16.16-49.77A2.52 2.52 0 00212.1 0z">
+                        </path>
+                    </svg>
+                    <span class="ml-4 flex items-start flex-col leading-none">
+
+                        <span class="title-font text-white font-medium">App Store</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>

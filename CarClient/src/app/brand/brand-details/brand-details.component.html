@@ -1,0 +1,13 @@
+<h2>Brand Details</h2>
+
+<hr />
+<div *ngIf="brand">
+    <div>
+        <label><b>Name: </b></label> {{brand.name}}
+    </div>
+
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to Brand List</button><br>

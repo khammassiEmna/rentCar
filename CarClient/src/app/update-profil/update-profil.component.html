@@ -1,0 +1,91 @@
+<div class="w-full h-screen flex justify-center"
+    style="background-image: url(https://www.turtlewax.com/media/3131/summer-road-trip-essentials-and-checklist-turtle-wax-thumbnail.jpg)">
+
+    <div class="w-full pt-2 p-4">
+
+        <div class="mx-auto md:p-20 ">
+
+            <div class="bg-black bg-opacity-50
+            shadow-md w-full rounded px-8 pt-6 pb-8 mb-4">
+                <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+                    <div class="mb-8">
+                        <label for="username" class="block text-red-700 text-lg font-bold mb-2 ">
+                            <span class="text-red-500">&nbsp;*</span>
+                            Nom
+                        </label>
+                        <div class="mt-1 relative rounded-md shadow-sm">
+                            <input autocomplete="off" type="text" name="fullName" [(ngModel)]="form.fullName"
+                                #fullName="ngModel"
+                                class="shadow-md border w-full px-10 py-5 text-red-500 focus:outline-none focus:border-red-500 mb-6 rounded"
+                                required>
+                        </div>
+                    </div>
+                    <div *ngIf="user">
+                        <div class="mb-8">
+                            <label for="username" class="block text-red-700 text-lg font-bold mb-2 ">
+                                <span class="text-red-500">&nbsp;*</span>
+                                Numero de permis
+                            </label>
+                            <div class="mt-1 relative rounded-md shadow-sm">
+                                <input autocomplete="off" type="text" name="permis" [(ngModel)]="form.permis"
+                                    #mail="ngModel"
+                                    class="shadow-md border w-full px-10 py-5 text-red-500 focus:outline-none focus:border-red-500 mb-6 rounded"
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-8">
+                        <label for="username" class="block text-red-700 text-lg font-bold mb-2 ">
+                            <span class="text-red-500">&nbsp;*</span>
+                            Adresse mail
+                        </label>
+                        <div class="mt-1 relative rounded-md shadow-sm">
+                            <input autocomplete="off" type="email" name="mail" [(ngModel)]="form.email" #mail="ngModel"
+                                class="shadow-md border w-full px-10 py-5 text-red-500 focus:outline-none focus:border-red-500 mb-6 rounded"
+                                required>
+
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <label for="username" class="block text-red-700 text-lg font-bold mb-2 ">
+                            <span class="text-red-500">&nbsp;*</span>
+                            Login
+                        </label>
+                        <div class="mt-1 relative rounded-md shadow-sm">
+                            <input autocomplete="off" type="text" name="username" [(ngModel)]="form.userName"
+                                #username="ngModel"
+                                class="shadow-md border w-full px-10 py-5 text-red-500 focus:outline-none focus:border-red-500 mb-6 rounded"
+                                required>
+                        </div>
+                    </div>
+                    <div *ngIf="f.submitted && username.invalid">
+                        <div *ngIf="username.errors.required">Username is required</div>
+                    </div>
+                    <input autocompte="off" type="password" class="form-control" name="password"
+                        [(ngModel)]="form.password" #password="ngModel"
+                        class="shadow-md border w-full  px-10 py-5 text-red-500 focus:outline-none focus:border-red-500 mb-6 rounded"
+                        required minlength="6">
+
+
+                    <div *ngIf="f.submitted && password.invalid">
+                        <div *ngIf="password.errors.required">Le champs mot de passe est obligatoire</div>
+                        <div *ngIf="password.errors.minlength">Le champs mot de passe doit être composé d'au moins 6
+                            chiffres</div>
+                    </div>
+                    <div *ngIf="used">Login used</div>
+
+                    <button
+                        class="inline-flex p-8 w-48  bg-red-600 text-white rounded-full h-6 px-3 justify-center items-center">
+                        Valider</button>
+
+
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,92 @@
+<app-client-nav-bar></app-client-nav-bar>
+
+<div class="w-full h-screen flex justify-center">
+
+    <div class="w-full pt-2 p-4">
+
+        <div class="mx-auto md:p-20 ">
+
+            <div class="bg-black bg-opacity-50 shadow-md w-full rounded px-8 pt-6 pb-8 mb-4">
+                <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                    <label for="username" class="block text-red-700 text-lg font-bold mb-2 ">
+                        <span class="text-red-500">&nbsp;*</span>
+                        Nom Complet
+                    </label>
+                    <input autocomplete="off" type="text" name="fullName" [(ngModel)]="form.fullName"
+                        #fullName="ngModel"
+                        class="block 
+                        bg-black bg-opacity-0 focus:bg-gray-900 focus:border-red-800 border-white text-white
+                        pr-10 shadow appearance-none border-2 rounded w-full py-2 px-4  mb-3 leading-tight focus:outline-none transition duration-500 ease-in-out"
+                        required>
+                    <label for="username" class="block text-red-700 text-lg font-bold mb-2 ">
+                        <span class="text-red-500">&nbsp;*</span>
+                        Numero de permis
+                    </label>
+                    <input autocomplete="off" type="text" name="permis" [(ngModel)]="form.permis" #mail="ngModel"
+                        class="block 
+                        bg-black bg-opacity-0 focus:bg-gray-900 focus:border-red-800 border-white text-white
+                        pr-10 shadow appearance-none border-2 rounded w-full py-2 px-4  mb-3 leading-tight focus:outline-none transition duration-500 ease-in-out" required>
+
+                    <label for="username" class="block text-red-700 text-lg font-bold mb-2 ">
+                        <span class="text-red-500">&nbsp;*</span>
+                        Adresse mail
+                    </label>
+                    <input autocomplete="off" type="mail" name="email" [(ngModel)]="form.email" #email="ngModel"
+                        class="block 
+                        bg-black bg-opacity-0 focus:bg-gray-900 focus:border-red-800 border-white text-white
+                        pr-10 shadow appearance-none border-2 rounded w-full py-2 px-4  mb-3 leading-tight focus:outline-none transition duration-500 ease-in-out" required>
+                    <div *ngIf="f.submitted && email.invalid" class="alert alert-danger">
+                        <div *ngIf="email.invalid">*Veuillez saisir une adresse mail valide</div>
+                        <div *ngIf="email.errors.required">*le champs mail est obligatoire</div>
+
+                    </div>
+                    <label for="username" class="block text-red-700 text-lg font-bold mb-2 ">
+                        <span class="text-red-500">&nbsp;*</span>
+                        Login
+                    </label>
+                    <input autocomplete="off" type="text" name="username" [(ngModel)]="form.username"
+                        #username="ngModel"
+                        class="block 
+                        bg-black bg-opacity-0 focus:bg-gray-900 focus:border-red-800 border-white text-white
+                        pr-10 shadow appearance-none border-2 rounded w-full py-2 px-4  mb-3 leading-tight focus:outline-none transition duration-500 ease-in-out"
+                        required>
+                    <div *ngIf="f.submitted && username.invalid" class="alert alert-danger">
+                        <div *ngIf="username.errors.required">*Le champs login est obligatoire</div>
+                    </div>
+                    <label for="username" class="block text-red-700 text-lg font-bold mb-2 ">
+                        <span class="text-red-500">&nbsp;*</span>
+                        Mot de passe
+                    </label>
+                    <input autocompte="off" type="password" class="form-control" name="password"
+                        [(ngModel)]="form.password" #password="ngModel"
+                        class="block 
+                        bg-black bg-opacity-0 focus:bg-gray-900 focus:border-red-800 border-white text-white
+                        pr-10 shadow appearance-none border-2 rounded w-full py-2 px-4  mb-3 leading-tight focus:outline-none transition duration-500 ease-in-out"
+                        required minlength="6">
+
+
+                    <div *ngIf="f.submitted && password.invalid" class="alert alert-danger">
+                        <div *ngIf="password.errors.required">Le champs mot de passe est obligatoire</div>
+                        <div *ngIf="password.errors.minlength">Le mot de passe doit être construit d'au moins 6
+                            caractéres</div>
+                    </div>
+
+                    <button
+                        class="text-white bg-red-700 border-0 py-5 px-20 focus:outline-none hover:bg-red-600 rounded text-3xl">
+                        Ajouter
+                    </button>
+
+                    <br>
+                    <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-danger">
+                        Login déja utilisé
+                    </div>
+
+
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
